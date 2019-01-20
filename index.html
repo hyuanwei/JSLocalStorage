@@ -19,7 +19,25 @@
             <input type="submit" value="+Add">
         </form>
     </div>
-    <script></script>
+    <script>
+        const taskAdder = 
+            document.querySelector('.taskAdder');
+        const myTasks = document.querySelector('.myTasks');
+
+        taskAdder.addEventListener('submit', addTask);
+        myTasks.addEventListener('click', toggleDone);
+
+        function addTask() {
+            console.log("Submitted");
+        }
+
+        function toggleDone() {
+            console.log("Done");
+        }
+
+        console.dir(document);
+
+    </script>
 </body>
 
 </html>
