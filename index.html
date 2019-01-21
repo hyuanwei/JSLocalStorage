@@ -31,23 +31,34 @@
 
         function addTask(e) {
             e.preventDefault();
-            console.log(this);
+            //console.log(this);
             const textTask = this.querySelector('[name=task]').value;
             const task = {
                 textTask, 
                 done:  false
             }
-            console.log(textTask);
+            //console.log(textTask);
             tasks.push(task);
-            console.log("Submitted");
+            outputTasks();
+            //console.log("Submitted");
             this.reset();
+        }
+
+        function outputTasks() {
+            let html = tasks.map (function(data, i) {
+                return '<li><div data-index=' + i + '>' + data.textTask + '</div></li>';
+            })
+
+            console.log(html);
+
+            myTasks.innerHTML = html.join("");
         }
 
         function toggleDone() {
             console.log("Done");
         }
 
-        console.dir(document);
+        //console.dir(document);
 
     </script>
 </body>
