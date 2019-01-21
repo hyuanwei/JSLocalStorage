@@ -24,11 +24,23 @@
             document.querySelector('.taskAdder');
         const myTasks = document.querySelector('.myTasks');
 
+        const tasks = [];
+
         taskAdder.addEventListener('submit', addTask);
         myTasks.addEventListener('click', toggleDone);
 
-        function addTask() {
+        function addTask(e) {
+            e.preventDefault();
+            console.log(this);
+            const textTask = this.querySelector('[name=task]').value;
+            const task = {
+                textTask, 
+                done:  false
+            }
+            console.log(textTask);
+            tasks.push(task);
             console.log("Submitted");
+            this.reset();
         }
 
         function toggleDone() {
