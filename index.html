@@ -6,13 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Local Storage Exercise</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style></style>
+    <style>
+        .done {
+            color: red;
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <ul class="myTasks">
-            <li>Task list items</li>
         </ul>
         <form class="taskAdder">
             <input type="text" name="task" placeholder="New Task Item" required>
@@ -46,19 +50,30 @@
 
         function outputTasks() {
             let html = tasks.map (function(data, i) {
-                return '<li><div data-index=' + i + '>' + data.textTask + '</div></li>';
+                let myClass = data.done?'done':'';
+                return '<li><div data-index=' + i + ' class="' + myClass +'">' + data.textTask + '</div></li>';
             })
 
-            console.log(html);
 
             myTasks.innerHTML = html.join("");
         }
 
-        function toggleDone() {
-            console.log("Done");
+        function toggleDone(e) {
+            const myEle = e.target;
+
+            console.log(e.target.tagName);
+
+            if (myEle.tagName == 'DIV') {
+                const mySel = myEle.dataset.index;
+
+                myEle.classList.toggle('done');
+                tasks[mySel].done = !tasks[mySel].done;
+
+            }
+
+
         }
 
-        //console.dir(document);
 
     </script>
 </body>
