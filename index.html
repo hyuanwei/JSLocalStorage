@@ -57,7 +57,7 @@
         function outputTasks() {
             let html = tasks.map (function(data, i) {
                 let myClass = data.done?'done':'';
-                return '<li><div data-index=' + i + ' class="' + myClass +'">' + data.textTask + '</div></li>';
+                return '<li data-index=' + i + '><div class="' + myClass +'">' + data.textTask + ' <span class="remove">x</span></div></li>';
             })
 
 
@@ -69,24 +69,28 @@
         }
 
         function toggleDone(e) {
+            
             const myEle = e.target;
 
-            console.log(e.target.tagName);
+            const mySel = myEle.parentElement;
 
-            if (myEle.tagName == 'DIV') {
-                const mySel = myEle.dataset.index;
-
+            if (myEle.className === 'remove') {
+                let index = mySel.parentElement.dataset.index;
+                let temp = tasks.splice(index, 1);
+                console.log(temp);
+            } else {
                 myEle.classList.toggle('done');
-                tasks[mySel].done = !tasks[mySel].done;
-                saveStorage();
-
+                tasks[mySel.dataset.index].done = !tasks[mySel.dataset.index].done;
             }
 
+            saveStorage();
+            outputTasks();
 
         }
 
 
     </script>
+    
 </body>
 
 </html>
